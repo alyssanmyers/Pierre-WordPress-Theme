@@ -17,7 +17,7 @@
 
   // Custom WordPress Footer
 	  function remove_footer_admin () {
-	    echo '♥ Theme by <a href="//amyers.art" target="blank">Alyssa Myers</a>.';
+	    echo '♥&nbsp;Theme by <a href="//amyers.art">Alyssa Myers</a>.';
 	  }
 	  add_filter('admin_footer_text', 'remove_footer_admin');
 
@@ -36,9 +36,9 @@
 		function myers_dashboard_widget_function() {
 
 			echo "<strong>Support Information:</strong>";
-			echo "<ul><li>&nbsp;&bull;&nbsp;<strong>Name:</strong> Alyssa Myers</li>
-		        <li>&nbsp;&bull;&nbsp;<strong>Email:</strong> <a href=\"mailto:contact@amyers.art\">contact@amyers.art</a></li>
-		        <li>&nbsp;&bull;&nbsp;<strong>Website:</strong> <a href=\"//amyers.art\" target=\"blank\">amyers.art</a></li>
+			echo "<ul><li> &nbsp; &bull; &nbsp; <strong>Name:</strong> Alyssa Myers</li>
+		        <li> &nbsp; &bull; &nbsp; <strong>Email:</strong> <a href=\"mailto:alyssa@alyssanmyers.com\">alyssa@alyssanmyers.com</a></li>
+		        <li> &nbsp; &bull; &nbsp; <strong>Website:</strong> <a href=\"//amyers.art\">amyers.art</a></li>
 		    </ul>";
 
 		}

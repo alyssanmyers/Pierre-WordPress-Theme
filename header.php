@@ -90,7 +90,7 @@
 				
 				<li><a href="<?php echo get_site_url(); ?>/#about">About</a></li>
 				
-				<li><a href="<?php echo get_site_url(); ?>/#">Résumé</a></li>
+				<li><a href="<?php echo get_site_url(); ?>/resume.pdf">Résumé</a></li>
 				
 				<li><a href="#contact">Contact</a></li>
 				

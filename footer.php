@@ -18,7 +18,7 @@
 		
 	<?php echo wp_footer(); ?>
 		
-	<div id="contact" class="anchor">
+	<div id="contact">
 	<div id="contact-container">
 	<h2>Tell Me About Your Next Project</h2>
 	<p>Please don't hesitate to get in touch&mdash;I'd love to explore the creative possibilities we can achieve together!</p>
@@ -47,4 +47,5 @@
 	</footer>
 
 </body>
+
 </html>

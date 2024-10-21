@@ -40,8 +40,8 @@ get_header('home');
 			'category_name' => '',
 			'post_type' => 'port_pieces',
 			'posts_per_page' => 4,
-			'has_password'   => FALSE,
-			'category__not_in' => array(get_cat_ID('Feature'))
+			'has_password'   => FALSE/*,
+			'category__not_in' => array(get_cat_ID('Feature'))*/
 		]);
 	
 		$about_post = new WP_Query([
@@ -49,7 +49,7 @@ get_header('home');
 			'title' => 'About',
 		]);
 	?>
-	
+		
 <!----------------------------------->
 <!--		INTRO SECTION		   -->
 <!----------------------------------->
@@ -112,6 +112,7 @@ get_header('home');
 				<a href="#about" class="cta-button">More About Me</a>
 				<?php endif; ?>
 			</div>
+			<div class="arrow bounce"></div>
 		</div>
 		<?php wp_reset_postdata(); ?>
 
@@ -121,43 +122,49 @@ get_header('home');
 
 		<div class="intro-right clearfix">
 			<ul id="port-highlight">
-			<?php if ( $featured_work->have_posts() ) : ?>
-				<?php while ( $featured_work->have_posts() ) : $featured_work->the_post(); ?>
+			<?php if ( $featured_work->have_posts() ) :
+				
+				while ( $featured_work->have_posts() ) : $featured_work->the_post();
+				
+					echo '<li>';
+						echo '<a href="' . get_the_permalink() . '">';
+							echo '<div class="text">';
+								echo '<h2 class="animateTop animate__animated animate__fadeInUp" style="color: #ffffff; margin: 0; padding: 0;">';
+									echo get_the_title()
+										. '<br />';
+								echo '</h2>';
+							echo '<h3 class="animate__animated animate__fadeInUp" style="animation-delay: 0.25s; margin: 0; font-weight: normal;">';
+								$categories = get_the_category();
+								$count = 0;
+								foreach( $categories as $category) 
+								{
+									if ($category->name != 'Feature') { echo $category->name; }
+									if (++$count >= count($categories) ) { break; }
+									if ($category->name != 'Feature') { echo ", "; }
+								}
+								echo '</h3>';
+							echo '</div>';
+							echo '<img src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '" />';
+						echo '</a>';
+					echo '</li>';
+				endwhile; 
+				
+				if ( wp_count_posts()->publish > 1 ) :
+					echo '<a href="#portfolio" class="cta-button" style="margin: 25px auto; display: flex; justify-content: center; border: 0;">View More Projects ↓</a>';
+				endif;
 			
-				<?php
-				echo '<li>';
-					echo '<a href="' . get_the_permalink() . '">';
-						echo '<div class="text">';
-							echo '<h2 class="animateTop animate__animated animate__fadeInUp" style="color: #ffffff; margin: 0; padding: 0;">';
-								echo get_the_title()
-									. '<br />';
-							echo '</h2>';
-						echo '<h3 class="animate__animated animate__fadeInUp" style="animation-delay: 0.25s; margin: 0; font-weight: normal;">';
-							$categories = get_the_category();
-							$count = 0;
-							foreach( $categories as $category) 
-							{
-								if ($category->name != 'Feature') { echo $category->name; }
-								if (++$count >= count($categories) ) { break; }
-								if ($category->name != 'Feature') { echo ", "; }
-							}
-							echo '</h3>';
-						echo '</div>';
-						echo '<img src="' . get_the_post_thumbnail_url() . '" alt="' . get_the_title() . '" />';
-					echo '</a>';
-				echo '</li>';
-				?>
-			<?php endwhile; ?>
-			</ul>
+			else : ?>
 			
-			<a href="#portfolio" class="cta-button" style="margin: 25px auto; display: flex; justify-content: center; border: 0;">View More Projects ↓</a>
+				<li style="height: 100%; background-image: url('<?php bloginfo('template_url') ?>/images/pierre_ny.jpeg'); background-position: center; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_ny.jpeg" alt="" class="fancybox"></a></li>
+
+				<li style="height: 100%; background-image: url('<?php bloginfo('template_url'); ?>/images/pierre_egypt.jpeg'); background-position: center 65%; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_egypt.jpeg" alt="" class="fancybox"></a></li>
+
+				<li style="height: 100%; background-image: url('<?php bloginfo('template_url'); ?>/images/pierre_akron.jpeg'); background-position: center; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_akron.jpeg" alt="" class="fancybox"></a></li>
 			
 			<?php endif; ?>
-			<li style="height: 100%; background-image: url('<?php bloginfo('template_url') ?>/images/pierre_ny.jpeg'); background-position: center; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_ny.jpeg" alt="" class="fancybox"></a></li>
+				
+			</ul>
 			
-			<li style="height: 100%; background-image: url('<?php bloginfo('template_url'); ?>/images/pierre_egypt.jpeg'); background-position: center 65%; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_egypt.jpeg" alt="" class="fancybox"></a></li>
-			
-			<li style="height: 100%; background-image: url('<?php bloginfo('template_url'); ?>/images/pierre_akron.jpeg'); background-position: center; background-size: cover; background-attachment: scroll; background-repeat: no-repeat;"><a href="<?php bloginfo('template_url');?>/images/pierre_akron.jpeg" alt="" class="fancybox"></a></li>
 			<?php wp_reset_postdata(); ?>
 		</div>
 	</section>
@@ -243,7 +250,7 @@ get_header('home');
 							$count = 0;
 							foreach( $categories as $category) 
 							{
-								if ($category->name != 'Feature') { echo $category->name; }
+								if ($category->name != 'F	eature') { echo $category->name; }
 								if (++$count >= count($categories) ) { break; }
 								if ($category->name != 'Feature') { echo ", "; }
 							}
@@ -323,7 +330,7 @@ get_header('home');
 					</a></li>
 				</ul>
 				
-				<a href="#" class="cta-button" style="margin-bottom: 25px;">View Résumé</a>
+				<a href="/resume.pdf" class="cta-button" style="margin-bottom: 25px;">View Résumé</a>
 				<a href="#contact" class="cta-button" style="margin-right: 0;">Get in Touch</a>
 			</div>
 		</div>
@@ -365,6 +372,76 @@ get_header('home');
 
 </div> <!-- end container -->
 </div> <!-- end wrapper -->
+
+<style>
+@-webkit-keyframes bounce
+{
+	0%, 20%, 50%, 80%, 100%
+	{
+		-webkit-transform: translate(0); 
+	}
+	40% 
+	{
+    	-webkit-transform: translate(0,-30px);
+	}
+	60% 
+	{
+    	-webkit-transform: translate(0,-15px);
+  }
+}
+	
+	@-moz-keyframes bounce
+{
+	0%, 20%, 50%, 80%, 100%
+	{
+		-moz-transform: translate(0);
+	}
+	40% 
+	{
+    	-moz-transform: translate(0,-30px);
+	}
+	60% 
+	{
+    	-moz-transform: translate(0,-15px);
+  }
+}
+	
+@keyframes bounce
+{
+	0%, 20%, 50%, 80%, 100%
+	{
+    	transform: translateY(0);
+	}
+	40% 
+	{
+    	transform: translateY(-30px);
+	}
+	60% 
+	{
+    	transform: translateY(-15px);
+  }
+}
+@media only screen and (min-device-width: 1025px)
+{
+	.arrow 
+	{
+	  position: absolute;
+	  bottom: 3.5%;
+	  right: -97.5%;
+	  margin-left:-20px;
+	  width: 40px;
+	  height: 40px;
+	  background-image: url(<?php bloginfo('template_url'); ?>/images/arrow-icon.svg);
+	  background-size: contain;
+	}
+}
+.bounce
+{
+	-webkit-animation: bounce 2s infinite;
+	-moz-animation: bounce 2s infinite;
+	animation: bounce 2s infinite;
+}
+</style>
 
 <?php
 

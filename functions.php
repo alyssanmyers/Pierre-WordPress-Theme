@@ -72,7 +72,7 @@
 		wp_register_script('jquery.min', get_stylesheet_directory_uri().'/js/jquery.min.js');
 		wp_register_script('script', get_stylesheet_directory_uri().'/js/script.js');
 		wp_register_script('carousel', get_stylesheet_directory_uri().'/js/owl.carousel.min.js');
-
+		
 		/* call all stylesheets and scripts */
 		wp_enqueue_style( 'style' );
 		wp_enqueue_script( 'jquery.min' );
@@ -118,7 +118,7 @@
 			'post_type' => 'port_pieces',
 			'posts_per_page' => $ppp,
 			/*'cat' => 8,*/
-			'category__not_in' => array(get_cat_ID('Feature')),
+			/*'category__not_in' => array(get_cat_ID('Feature')),*/
 			'paged'    => $page,
 		);
 

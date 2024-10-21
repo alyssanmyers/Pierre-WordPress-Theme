@@ -40,7 +40,7 @@ $(document).ready(function()
 	});
 	
 	var ppp = 2; // Post per page
-	var cat = 8;
+	var cat = 8; // category number
 	var pageNumber = 2;
 
 	function load_posts(){

@@ -25,8 +25,10 @@ $args = array (
 	<main style="width: 100%; padding: 5% 0 0 0;">
 		<div style="position: relative;">
 		
-			<h1 class="animate__animated animate__fadeInUp intro-header"><?php echo $thiscat->name; ?></h1>
-				<h3 class="animate__animated animate__fadeInUp intro-body" style="animation-delay: 0.5s; line-height: 1.5em;"><?php echo $thiscat->description; ?></h3>
+			<div style="padding: 0 5%;">
+				<h1 class="animate__animated animate__fadeInUp intro-header"><?php echo $thiscat->name; ?></h1>
+				<p class="animate__animated animate__fadeInUp intro-body" style="animation-delay: 0.5s; line-height: 1.5em; padding-top: 25px;"><?php echo $thiscat->description; ?></p>
+			</div>
 
 				<div class="filter">
 					<img src="<?php bloginfo('template_url'); ?>/images/filter.svg"/>
@@ -70,15 +72,6 @@ $args = array (
 			</ul>
 			</div>
 		</div>
-        
-        <?php
-        /* if the chosen category is animation, show the demo reel */
-        if ( $thiscat->slug == 'animation' ) 
-        {
-            echo '<div class="demo-reel"><iframe src="//player.vimeo.com/video/383148532?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>';
-        }
-        ?>
-
 		
         <?php if ( $the_query->have_posts() ) : ?>
 		<ul id="portfolio" class="anchor">

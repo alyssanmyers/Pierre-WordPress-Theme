@@ -591,6 +591,8 @@ ul#port-highlight li
 	#quick-bio
 	{
 		padding: 50px 5%;
+		//margin: 50px 5% -50px 5%;
+   		//padding: 0;
 	}
 }
 
@@ -601,11 +603,14 @@ ul#port-highlight li
 #about
 {
     height: 100%;
+	display: flex;
+    align-items: stretch;
+    padding-top: 100px;
 }
 
 #about-left, .about-right
 {
-    height: calc(100vh - 100px);
+    //min-height: calc(100vh - 100px);
     float: left;
     width: 50%;
 }
@@ -626,7 +631,7 @@ ul#port-highlight li
 
 .about-right-copy
 {
-    padding: 0 10% 50px 10%;
+    padding: 50px 10% 75px 10%;
 }
 
 #about h3
@@ -708,6 +713,11 @@ ul#skill-list h2
 /******************/
 /*    CONTACT     */
 /******************/
+
+#contact input[type=submit]
+{
+	color: #ffffff;
+}
 
 #contact-container
 {	padding: 5% 25%;
@@ -897,6 +907,25 @@ main ul#portfolio li
 	overflow: hidden;
  	position: relative;
 	transition: all 0.25s, width 0.5s ease, padding 0.5s ease;
+}
+
+/* for browsers who can't support aspect ratio */
+@supports not (aspect-ratio: 16 / 9)
+{
+	@media all and (min-width: 1024px)
+	{
+		main ul#portfolio li
+		{
+			padding-top: 28.125%;
+		}
+	}
+	@media all and (max-width: 1023px)
+	{
+		main ul#portfolio li
+		{
+			padding-top: 56.25%;
+		}
+	}
 }
 
 main ul#port-images li
@@ -1349,6 +1378,7 @@ footer a.plain
 		position: relative;
 		right: 0;
 		padding: 0px;
+		bottom: 0;
 	}
 	
 	.filter img
